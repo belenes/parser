@@ -34,7 +34,7 @@ def funcion:
     if (proximo == simbolo):
     else:
         error = True
-#
+
 #Lista de los no terminales completar con todas, falta terminar
 listaNoTerminales = [
 Funcion(),
