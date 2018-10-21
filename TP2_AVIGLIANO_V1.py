@@ -1,45 +1,41 @@
 from lexer import lexer
 
-backtrack_id = 0
-token_idex = 0
+#esto viene del Lexer
+listaTokens = tokens
 
+#Constantes para operar
+Lexeme = 2
+Puntero = 0
 
-def principal(tokens):
-    tokens = tokens + $
-    error = False
-    n = 0
-    s(n)
-    if (error == False) and (tokens[n] == $):
-        Pertenece == True
-        return listaProducciones
-    else:
-        Pertenece == False
+# esto me da el primer token para comparar
+proximo = proximoToken()
 
-def s():
-    j = 0
-    aux = n
-    while (error == True) and (j < k):
-        n = aux
-        error = False
-        procesar( p(0,1), n )
-        j = j + 1
-
-def procesar( q, pw):
-
+#El parser debe devolver las producciones si la cadena pertenece
 def parser(listaTokens, cadena):
     pertenece(cadena)
     return listaProducciones
 
+#Para darle el siguiente para el analisis
+def proximoToken:
+    simboloDesignado = listaTokens[Puntero[Lexeme]]
+    return simboloDesignado
+#Se fija si pertenece, chequeando los tokens con la cadena
 def pertenece():
     while (error == False):
-        for i = 0 range (0, len(cadena)):
+        for i=0 range(0, len(cadena)):
             if (proximo == cadena[i]):
                 proximo = proximoToken()
             else:
-
                 error = True
+                break
 
+#Los no terminales empiezan acá
+def funcion:
+    if (proximo == simbolo):
+    else:
+        error = True
 
+#Lista de los no terminales completar con todas, falta terminar
 listaNoTerminales = [
 Funcion(),
 ListaArgumentos(),
