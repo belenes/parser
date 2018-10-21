@@ -1,22 +1,21 @@
 from lexer import lexer
 
-
-def parser(tokenType, lexeme):
-    backtrack_id = 0
-    tokens = tokens
-    token_idex = 0
+backtrack_id = 0
+token_idex = 0
 
 
-def principal(src):
+def principal(tokens):
+    tokens = tokens + $
     error = False
     n = 0
     s(n)
-    if (error == False) and (w[n] == $):
-        wPertenece == True
+    if (error == False) and (tokens[n] == $):
+        Pertenece == True
+        return listaProducciones
     else:
-        wPertenece == False
+        Pertenece == False
 
-def S(n):
+def s():
     j = 0
     aux = n
     while (error == True) and (j < k):
@@ -26,6 +25,45 @@ def S(n):
         j = j + 1
 
 def procesar( q, pw):
+
+def parser(listaTokens, cadena):
+    pertenece(cadena)
+    return listaProducciones
+
+def pertenece():
+    while (error == False):
+        for i = 0 range (0, len(cadena)):
+            if (proximo == cadena[i]):
+                proximo = proximoToken()
+            else:
+
+                error = True
+
+
+listaNoTerminales = [
+Funcion(),
+ListaArgumentos(),
+Argumento(),
+Declaracion(),
+Tipo(),
+ListaIdent(),
+Sentencia(),
+SentFor(),
+SentWhile(),
+SentIf(),
+SentenciaCompuesta(),
+ListaSentencia(),
+Expr(),
+ValorR(),
+X(),
+Comparacion(),
+Mag(),
+Mag2(),
+Termino(),
+Termino2(),
+Factor()
+]
+
 
 
 
