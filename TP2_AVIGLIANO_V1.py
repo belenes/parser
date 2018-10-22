@@ -10,6 +10,7 @@ def Principal (tokens):
     error = False
     ProcedureN()
     if error==False and FinCadena == True :
+        #Esto me devuelve un Booleano
         Pertenece()
 
 def ProcedureN (tokens) :
@@ -23,52 +24,71 @@ def ProcedureN (tokens) :
 
 def Procesar ():
         tuplas = tokens[kk]
-        Cosa = tuplas[0]
+        Cosa = tuplas[1]
 
-# derivacion desde el simbolo inicial
+# Todas las derivaciones desde el simbolo inicial
+
+#<Funcion> →  <Tipo> <Identificador> ( <ListaArgumentos> ) <SentenciaCompuesta>
 def SimboloInicial (Cosa):
-    auxiliar = [<Funcion>]
+    auxiliar = ["<Funcion>"]
     if Tipo():
     elif Identificador()
     elif "("
     elif ListaArgumentos()
     elif ")"
     elif SentenciaCompuesta()
+    else:
+         error = True
 
+#<Tipo> → int
+#<Tipo> → float
 def Tipo():
-    auxiliar.append(<Tipo>)
+    auxiliar.append("<Tipo>")
     if "Int" == Cosa
-        derivaciones.append(auxiliar.append(Int))
+        derivaciones.append("Int")
     elif "Float" == Cosa
-        derivaciones.append(<Funcion><Tipo><Int>)
+        derivaciones.append("Float")
 
-def Identificador():
+def Identificador()
 
 
+#<ListaArgumentos> → <Argumento>
+#<ListaArgumentos> → <Argumento> , <ListaArgumentos>
 def ListaArgumentos():
     if Argumento()
     else :
         if Argumento()
-        elif ","
+    elif ",":
+        derivaciones.append(",")
         elif ListaArgumentos()
 
+#<Argumento> → <Tipo><Identificador>
 def Argumento():
     if Tipo()
     elif Identificador()
 
-
-
+#<SentenciaCompuesta> → {<ListaSentencia>}
 def SentenciaCompuesta():
-    if "{"
+    if "{":
+        derivaciones.append("{")
     elif ListaSentencia()
-    elif "}"
+    elif "}":
+        derivaciones.append("}")
 
+#<ListaSentencia> → <Sentencia>
+#<ListaSentencia> → <Sentencia><ListaSentencia>
 def ListaSentencia():
     if Sentencia()
     else:
         if Sentencia()
         elif ListaSentencia()
 
+#<Sentencia> → <SentFor>
+#<Sentencia> → <SentWhile>
+#<Sentencia> → <Expr> ;
+#<Sentencia> → <SentIf>
+#<Sentencia> → <SentenciaCompuesta>
+#<Sentencia> → <Declaracion> ;
 def Sentencia():
     if SentFor()
     else :
@@ -82,68 +102,101 @@ def Sentencia():
     else:
         Declaracion()
 
+#<SentFor> → for (<Expr> , <Expr>, <Expr>) <Sentencia>
+#<SentFor> → for (<Expr> , ,<Expr>) <Sentencia>
+#<SentFor> → for (<Expr> , <Expr>, ) <Sentencia>
+#<SentFor> → for (<Expr> , , ) <Sentencia>
 def SentFor():
-    if "for"
-    elif "("
+    if "for":
+        derivaciones.append("for")
+    elif "(":
+        derivaciones.append("(")
     elif Expr()
-    elif ","
+    elif ",":
+        derivaciones.append(",")
     elif Expr()
-    elif ","
+    elif ",":
+        derivaciones.append(",")
     elif Expr()
-    elif ")"
+    elif ")":
+        derivaciones.append(")")
     elif Sentencia()
     else:
-        if "for"
-        elif "("
+        if "for":
+            derivaciones.append("for")
+        elif "(":
+            derivaciones.append("(")
         elif Expr()
-        elif ","
+        elif ",":
+            derivaciones.append(",")
         elif " "
-        elif ","
+        elif ",":
+            derivaciones.append(",")
         elif Expr()
-        elif ")"
+        elif ")":
+            derivaciones.append(")")
         elif Sentencia()
     else:
-        if "for"
-        elif "("
+        if "for":
+            derivaciones.append("for")
+        elif "(":
+            derivaciones.append("(")
         elif Expr()
-        elif ","
+        elif ",":
+            derivaciones.append(",")
         elif Expr()
-        elif ","
+        elif ",":
+            derivaciones.append(",")
         elif " "
-        elif ")"
+        elif ")":
+            derivaciones.append(")")
         elif Sentencia()
     else:
-        if "for"
-        elif "("
+        if "for":
+            derivaciones.append("for")
+        elif "(":
+            derivaciones.append("(")
         elif Expr()
-        elif ","
+        elif ",":
+            derivaciones.append(",")
         elif " "
-        elif ","
+        elif ",":
+            derivaciones.append(",")
         elif " "
-        elif ")"
+        elif ")":
+            derivaciones.append(")")
         elif Sentencia()
 
+#<SentWhile> → while (<Expr>) <Sentencia>
 def SentWhile():
     if while()
-    elif "("
-    elif ")"
+    elif "(":
+        derivaciones.append("(")
+    elif ")":
+        derivaciones.append(")")
     elif Expr()
     elif Sentencia()
 
+#<Expr> → <identificador>:= <Expr>
+#<Expr> → <ValorR>
 def Expr():
     if Identeficador():
-    elif ":"
-    elif "="
+    elif ":=":
+        derivaciones.append(":=")
     elif Expr()
 else:
     if ValorR()
 
+#<ValorR> → <Mag><X>
+#<ValorR> → <Mag>
 def ValorR():
     if Mag()
     elif X()
     else:
         if Mag()
 
+#<X> →  <Comparacion><Mag>
+#<X> →  <Comparacion><Mag><X>
 def X():
     if Comparacion()
     elif Mag()
@@ -152,139 +205,132 @@ else:
     elif Mag()
     elif X()
 
+#<Comparacion> → ==
+#<Comparacion> → >
+#<Comparacion> → <
+#<Comparacion> → >=
+#<Comparacion> → <=
+#<Comparacion> → !=
 def Comparacion():
-    if "=="
+    if "==":
+        derivaciones.append("==")
 else:
-    if ">"
+    if ">":
+        derivaciones.append(">")
 else:
-    if "<"
+    if "<":
+        derivaciones.append("<")
 else:
-    if "="
-    elif">"
+    if ">=":
+        derivaciones.append(">=")
 else:
-    if "="
-    elif"<"
+    if "<=":
+        derivaciones.append("<=")
 else:
-    if "!"
-    elif "="
+    if "!=":
+        derivaciones.append("!=")
 
+#<Mag> → <Termino> <Mag2>
 def Mag():
     if Termino()
     elif Mag2()
 
+#<Mag2> → - <Termino> <Mag2>
+#<Mag2> → + <Termino> <Mag2>
 def Mag2():
-    if "-"
+    if "-":
+        derivaciones.append("-")
     elif Termino()
     elif Mag2()
 else:
-    if "+"
+    if "+":
+        derivaciones.append("+")
     elif Termino()
     elif Mag2()
 
+#<Termino> →  <Factor> <Termino2>
 def Termino():
     if Factor()
     elif Termino2()
 
+#<Termino2> → / <Factor> <Termino2>
+#<Termino2> →  * <Factor> <Termino2>
+def Termino2():
+    if "/":
+        derivaciones.append("/")
+    elif Factor()
+    elif Termino2()
+else:
+    if "*":
+        derivaciones.append("*")
+    elif Factor()
+    elif Termino2()
+
+#<SentIf> → if (<Expr>) <Sentencia> else(<Sentencia>)
+#<SentIf> → if (<Expr>) <Sentencia>
 def SentIf():
-    if "if"
-    elif "("
+    if "if":
+        derivaciones.append("if")
+    elif "(":
+        derivaciones.append("(")
     elif Expr()
-    elif ")"
+    elif ")":
+        derivaciones.append(")")
     elif Sentencia()
-    elif "else"
-    elif "("
-    elif ")"
+    elif "else":
+        derivaciones.append("else")
+    elif "(":
+        derivaciones.append("(")
+    elif ")":
+        derivaciones.append(")")
     elif Sentencia()
 else:
-    if "if"
-    elif "("
+    if "if":
+        derivaciones.append("if")
+    elif "(":
+        derivaciones.append("(")
     elif Expr()
-    elif ")"
+    elif ")":
+        derivaciones.append(")")
     elif Sentencia()
 
+#<Declaracion> → <Tipo><ListaIdent> ;
 def Declaracion():
     if Tipo()
     elif ListaIdent()
-    elif ";"
+    elif ";":
+        derivaciones.append(";")
 
+#<ListaIdent> → <Identificador> , <ListaIdent>
+#<ListaIdent> → <Identificador>
 def ListaIdent():
     if Identificador()
-    elif ","
+    elif ",":
+        derivaciones.append(",")
     elif ListaIdent()
     else:
         if Identificador()
 
-def Termino2():
-    if "/"
-    elif Factor()
-    elif Termino2()
-else:
-    if "*"
-    elif Factor()
-    elif Termino2()
-def Factor():
-    if "("
-    elif Expr()
-    elif")"
-else:
-    if "+"
-    elif Factor()
-else:
-    if "-"
-    elif Factor()
-else:
-    if Numero()
-else:
-    if Identificador()
-
-
-
-#<Funcion> →  <Tipo> <Identificador> ( <ListaArgumentos> ) <SentenciaCompuesta>
-#<ListaArgumentos> → <Argumento>
-#<ListaArgumentos> → <Argumento> , <ListaArgumentos>
-#<Argumento> → <Tipo><Identificador>
-#<Declaracion> → <Tipo><ListaIdent> ;
-#<Tipo> → int
-#<Tipo> → float
-#<ListaIdent> → <Identificador> , <ListaIdent>
-#<ListaIdent> → <Identificador>
-#<Sentencia> → <SentFor>
-#<Sentencia> → <SentWhile>
-#<Sentencia> → <Expr> ;
-#<Sentencia> → <SentIf>
-#<Sentencia> → <SentenciaCompuesta>
-#<Sentencia> → <Declaracion> ;
-#<SentFor> → for (<Expr> , <Expr>, <Expr>) <Sentencia>
-#<SentFor> → for (<Expr> , ,<Expr>) <Sentencia>
-#<SentFor> → for (<Expr> , <Expr>, ) <Sentencia>
-#<SentFor> → for (<Expr> , , ) <Sentencia>
-#<SentWhile> → while (<Expr>) <Sentencia>
-#<SentIf> → if (<Expr>) <Sentencia> else(<Sentencia>)
-#<SentIf> → if (<Expr>) <Sentencia>
-#<SentenciaCompuesta> → {<ListaSentencia>}
-#<ListaSentencia> → <Sentencia>
-#<ListaSentencia> → <Sentencia><ListaSentencia>
-#<Expr> → <identificador>:= <Expr>
-#<Expr> → <ValorR>
-#<ValorR> → <Mag><X>
-#<ValorR> → <Mag>
-#<X> →  <Comparacion><Mag>
-#<X> →  <Comparacion><Mag><X>
-#<Comparacion> → ==
-#<Comparacion> → >
-#<Comparacion> → <
-#<Comparacion> → =>
-#<Comparacion> → =<
-#<Comparacion> → !=
-#<Mag> → <Termino> <Mag2>
-#<Mag2> → - <Termino> <Mag2>
-#<Mag2> → + <Termino> <Mag2>
-#<Termino> →  <Factor> <Termino2>
-#<Termino2> → / <Factor> <Termino2>
-#<Termino2> →  * <Factor> <Termino2>
 #<Factor> →  (<Expr>)
 #<Factor> →  + <Factor>
 #<Factor> →  - <Factor>
 #<Factor> → <Numero>
 #<Factor> → <Identificador>
-
+def Factor():
+    if "(":
+        derivaciones.append("(")
+    elif Expr()
+    elif ")":
+        derivaciones.append(")")
+else:
+    if "+":
+        derivaciones.append("+")
+    elif Factor()
+else:
+    if "-":
+        derivaciones.append("-")
+    elif Factor()
+else:
+    if Numero()
+else:
+    if Identificador()
