@@ -2,14 +2,14 @@
 
 from avigliano_lexer_v3 import lexer
 
-derivaciones=[]
+derivaciones = []
 
 def Principal (tokens):
 
     contador = 0
     error = False
     ProcedureN()
-    if error==False and FinCadena == True :
+    if error == False and FinCadena == True :
         #Esto me devuelve un Booleano
         Pertenece()
 
@@ -24,7 +24,7 @@ def ProcedureN (tokens) :
 
 def Procesar ():
         tuplas = tokens[kk]
-        Cosa = tuplas[1]
+        Cosa = tuplas[0]
 
 # Todas las derivaciones desde el simbolo inicial
 
@@ -40,17 +40,17 @@ def SimboloInicial (Cosa):
     else:
          error = True
 
+            
 #<Tipo> → int
 #<Tipo> → float
 def Tipo():
-    auxiliar.append("<Tipo>")
-    if "Int" == Cosa
+    if "int":
         derivaciones.append("Int")
-    elif "Float" == Cosa
+    elif "float":
         derivaciones.append("Float")
 
-def Identificador()
-
+def Identificador():
+            
 
 #<ListaArgumentos> → <Argumento>
 #<ListaArgumentos> → <Argumento> , <ListaArgumentos>
