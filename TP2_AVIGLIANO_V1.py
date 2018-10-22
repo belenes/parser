@@ -1,65 +1,241 @@
-from lexer import lexer
+# hola soy un parser
 
-#esto viene del Lexer
-listaTokens = tokens
+from avigliano_lexer_v3 import lexer
 
-#Constantes para operar
-Lexeme = 2
-Puntero = 0
+derivaciones=[]
 
-# esto me da el primer token para comparar
-proximo = proximoToken()
+def Principal (tokens):
 
-#El parser debe devolver las producciones si la cadena pertenece
-def parser(listaTokens, cadena):
-    pertenece(cadena)
-    return listaProducciones
+    contador = 0
+    error = False
+    ProcedureN()
+    if error==False and FinCadena == True :
+        Pertenece()
 
-#Para darle el siguiente para el analisis
-def proximoToken:
-    simboloDesignado = listaTokens[Puntero[Lexeme]]
-    return simboloDesignado
-#Se fija si pertenece, chequeando los tokens con la cadena
-def pertenece():
-    while (error == False):
-        for i=0 range(0, len(cadena)):
-            if (proximo == cadena[i]):
-                proximo = proximoToken()
-            else:
-                error = True
-                break
+def ProcedureN (tokens) :
+    kk = 0
 
-#Los no terminales empiezan acá
-def funcion:
-    if (proximo == simbolo):
+    while error = False and kk <= len(tokens) :
+        tokens[kk]
+        error = False
+        Procesar(tokens[kk])
+        kk = kk + 1
+
+def Procesar ():
+        tuplas = tokens[kk]
+        Cosa = tuplas[0]
+
+# derivacion desde el simbolo inicial
+def SimboloInicial (Cosa):
+    auxiliar = [<Funcion>]
+    if Tipo():
+    elif Identificador()
+    elif "("
+    elif ListaArgumentos()
+    elif ")"
+    elif SentenciaCompuesta()
+
+def Tipo():
+    auxiliar.append(<Tipo>)
+    if "Int" == Cosa
+        derivaciones.append(auxiliar.append(Int))
+    elif "Float" == Cosa
+        derivaciones.append(<Funcion><Tipo><Int>)
+
+def Identificador():
+
+
+def ListaArgumentos():
+    if Argumento()
+    else :
+        if Argumento()
+        elif ","
+        elif ListaArgumentos()
+
+def Argumento():
+    if Tipo()
+    elif Identificador()
+
+
+
+def SentenciaCompuesta():
+    if "{"
+    elif ListaSentencia()
+    elif "}"
+
+def ListaSentencia():
+    if Sentencia()
     else:
-        error = True
+        if Sentencia()
+        elif ListaSentencia()
 
-#Lista de los no terminales completar con todas, falta terminar
-listaNoTerminales = [
-Funcion(),
-ListaArgumentos(),
-Argumento(),
-Declaracion(),
-Tipo(),
-ListaIdent(),
-Sentencia(),
-SentFor(),
-SentWhile(),
-SentIf(),
-SentenciaCompuesta(),
-ListaSentencia(),
-Expr(),
-ValorR(),
-X(),
-Comparacion(),
-Mag(),
-Mag2(),
-Termino(),
-Termino2(),
-Factor()
-]
+def Sentencia():
+    if SentFor()
+    else :
+        SentWhile()
+    else :
+        Expr()
+    else:
+        SentIf()
+    else :
+        SentenciaCompuesta()
+    else:
+        Declaracion()
 
+def SentFor():
+    if "for"
+    elif "("
+    elif Expr()
+    elif ","
+    elif Expr()
+    elif ","
+    elif Expr()
+    elif ")"
+    elif Sentencia()
+    else:
+        if "for"
+        elif "("
+        elif Expr()
+        elif ","
+        elif " "
+        elif ","
+        elif Expr()
+        elif ")"
+        elif Sentencia()
+    else:
+        if "for"
+        elif "("
+        elif Expr()
+        elif ","
+        elif Expr()
+        elif ","
+        elif " "
+        elif ")"
+        elif Sentencia()
+    else:
+        if "for"
+        elif "("
+        elif Expr()
+        elif ","
+        elif " "
+        elif ","
+        elif " "
+        elif ")"
+        elif Sentencia()
+
+def SentWhile():
+    if while()
+    elif "("
+    elif ")"
+    elif Expr()
+    elif Sentencia()
+
+def Expr():
+    if Identeficador():
+    elif ":"
+    elif "="
+    elif Expr()
+else:
+    if ValorR()
+
+def ValorR():
+    if Mag()
+    elif X()
+    else:
+        if Mag()
+
+def X():
+    if Comparacion()
+    elif Mag()
+else:
+    if Comparacion()
+    elif Mag()
+    elif X()
+
+def Comparacion():
+    if "=="
+else:
+    if ">"
+else:
+    if "<"
+else:
+    if "="
+    elif">"
+else:
+    if "="
+    elif"<"
+else:
+    if "!"
+    elif "="
+
+def Mag():
+    if Termino()
+    elif Mag2()
+
+def Mag2():
+    if "-"
+    elif Termino()
+    elif Mag2()
+else:
+    if "+"
+    elif Termino()
+    elif Mag2()
+
+def Termino():
+    if Factor()
+    elif Termino2()
+
+def SentIf():
+    if "if"
+    elif "("
+    elif Expr()
+    elif ")"
+    elif Sentencia()
+    elif "else"
+    elif "("
+    elif ")"
+    elif Sentencia()
+else:
+    if "if"
+    elif "("
+    elif Expr()
+    elif ")"
+    elif Sentencia()
+
+def Declaracion():
+    if Tipo()
+    elif ListaIdent()
+    elif ";"
+
+def ListaIdent():
+    if Identificador()
+    elif ","
+    elif ListaIdent()
+    else:
+        if Identificador()
+
+def Termino2():
+    if "/"
+    elif Factor()
+    elif Termino2()
+else:
+    if "*"
+    elif Factor()
+    elif Termino2()
+def Factor():
+    if "("
+    elif Expr()
+    elif")"
+else:
+    if "+"
+    elif Factor()
+else:
+    if "-"
+    elif Factor()
+else:
+    if Numero()
+else:
+    if Identificador()
 
 
 
@@ -111,3 +287,4 @@ Factor()
 #<Factor> →  - <Factor>
 #<Factor> → <Numero>
 #<Factor> → <Identificador>
+
