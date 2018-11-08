@@ -34,23 +34,40 @@ def a_float(src):
 def a_if(src):
     s = 1
     for c in src:
-        if s == 1 and c=='i':
+        if s == 1 and c == 'i':
             s = 2
-        elif s == 2 and c=='f':
+        elif s == 2 and c == 'f':
             s = 3
         else:
             s = -1
             break
     return s == 3
 
+def a_else(src):
+    s = 1
+    for c in src:
+        if s == 1 and c == 'e':
+            s = 2
+        elif s == 2 and c == 'l':
+            s = 3
+        elif s == 3 and c == 's':
+            s = 4
+        elif s == 4 and c == 'e':
+            s = 5
+        else:
+            s = -1
+            break
+    return s == 5
+
+
 def a_for(src):
     s = 1
     for c in src:
         if s == 1 and c == 'f':
             s = 2
-        elif s == 2 and c=='o':
+        elif s == 2 and c == 'o':
             s = 3
-        elif s == 3 and c =='r':
+        elif s == 3 and c == 'r':
             s = 4
         else:
             s = -1
@@ -78,7 +95,7 @@ def a_while(src):
 def a_ParAbierto(src):
     s = 1
     for c in src:
-        if s == 1 and c=="(":
+        if s == 1 and c == "(":
             s = 2
         else:
             s = -1
@@ -88,7 +105,7 @@ def a_ParAbierto(src):
 def a_ParCerrado(src):
     s = 1
     for c in src:
-        if s == 1 and c==")":
+        if s == 1 and c == ")":
             s = 2
         else:
             s = -1
@@ -98,7 +115,7 @@ def a_ParCerrado(src):
 def a_LLaAbierta(src):
     s = 1
     for c in src:
-        if s==1 and c=="{":
+        if s==1 and c == "{":
             s = 2
         else:
             s = -1
@@ -108,7 +125,7 @@ def a_LLaAbierta(src):
 def a_LLaCerrada(src):
     s = 1
     for c in src:
-        if s == 1 and c=="}":
+        if s == 1 and c == "}":
             s = 2
         else:
             s = -1
@@ -125,7 +142,7 @@ def a_Mas(src):
 def a_Menos(src):
     s = 1
     for c in src:
-        if s == 1 and c=='-':
+        if s == 1 and c == '-':
             s = 2
         else:
             s = -1
@@ -145,7 +162,7 @@ def a_Por(src):
 def a_Dividido(src):
     s = 1
     for c in src:
-        if s == 1 and c=='/':
+        if s == 1 and c == '/':
             s = 2
         else:
             s = -1
@@ -155,7 +172,7 @@ def a_Dividido(src):
 def a_Coma(src):
     s = 1
     for c in src:
-        if s == 1 and c==',':
+        if s == 1 and c == ',':
             s = 2
         else:
             s = -1
@@ -175,7 +192,7 @@ def a_PuntoComa(src):
 def a_PuntoIgual(src):
     s = 1
     for c in src:
-        if s == 1 and c ==':':
+        if s == 1 and c == ':':
             s = 2
         elif s == 2 and c == '=':
             s = 3
@@ -300,10 +317,14 @@ def ERROR_TOKEN_PARCIAL(src):
             break
     return s == 2
 
+
+
+
 Token_Clasificacion = [
       ("Int", a_int),
       ("Float", a_float),
       ("If", a_if),
+      ("Else", a_else),
       ("For", a_for),
       ("While", a_while),
       ("(", a_ParAbierto),
@@ -317,12 +338,12 @@ Token_Clasificacion = [
       (",", a_Coma),
       (";", a_PuntoComa),
       (":=", a_PuntoIgual),
-      ("Comparacion", a_Menor),
-      ("Comparacion", a_Mayor),
-      ("Comparacion", a_MayorIgual),
-      ("Comparacion", a_MenorIgual),
-      ("Comparacion",a_Distinto),
-      ("Comparacion", a_IgualIgual),
+      ("<", a_Menor),
+      (">", a_Mayor),
+      (">=", a_MayorIgual),
+      ("<=", a_MenorIgual),
+      ("!=",a_Distinto),
+      ("==", a_IgualIgual),
       ("Numero", a_Num),
       ("Identificador", a_Id),
       ("ERROR_TP", ERROR_TOKEN_PARCIAL)
@@ -357,6 +378,7 @@ def lexer(src):
             if len(candidatos) > 0:
                 if candidatos[0] == "ERROR_TP":
                     print ("ERROR_TP: La candena ingresada es invalida")
+
                 else:
                     token = (candidatos[0], word)
                     tokens.append(token)
@@ -388,13 +410,13 @@ def calc_candidatos(word):
                 candidatos.append(clasi)
     return candidatos
 
-print ("1", lexer("for{ x>5, y<=26 };"))
-print ("2", lexer("while (abc - 6)*77 float 553 "))
-print ("3", lexer("float hola := 123"))
-print ("4", lexer("  % "))
-print ("5", lexer("  != kkkk ;"))
-print ("6", lexer(" if >= { 123 } ac / hola (10-5)"))
-print ("7", lexer(" int >= 885232 + asd (x/655622) "))
-print ("8", lexer(" abc123"))
-print ("9", lexer("(x>4,55) int ((8*8)/(56+265)) ;"))
-print ("10", lexer(" : "))
+#print ("1", lexer("for{ x>5, y<=26 };"))
+#print ("2", lexer("while (abc - 6)*77 float 553 "))
+#print ("3", lexer("float hola := 123"))
+#print ("4", lexer("  % "))
+#print ("5", lexer("  != kkkk ;"))
+#print ("6", lexer(" if >= { 123 } ac / hola (10-5)"))
+#print ("7", lexer(" int >= 885232 + asd (x/655622) "))
+#print ("8", lexer(" abc123"))
+#print ("9", lexer("(x>4,55) int ((8*8)/(56 + 265)) ;"))
+#print ("10", lexer(" if 25 == true else 5"))
