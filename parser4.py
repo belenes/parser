@@ -53,86 +53,127 @@ VN = [
     'Termino',
     'Termino2',
     'Factor'
-
 ]
 
 producciones = {
 
-'Funcion': [["Tipo", "Identificador", "(", "ListaArgumentos", ")", "SentenciaCompuesta"]],
+'Funcion': [
+    ["Tipo", "Identificador", "(", "ListaArgumentos", ")", "SentenciaCompuesta"]
+],
 
-'ListaArgumentos': [["Argumento"],
-                    ["Argumento", ",", "ListaArgumentos"]],
+'ListaArgumentos': [
+    ["Argumento"],
+    ["Argumento", ",", "ListaArgumentos"]
+],
 
-'Argumento': [["Tipo", "Identificador"]],
+'Argumento': [
+    ["Tipo", "Identificador"]
+],
 
-'Declaracion': [["Tipo", "ListaIdent"]],
+'Declaracion': [
+    ["Tipo", "ListaIdent"]
+],
 
-'Tipo': [["Int"],
-         ["Float"]],
+'Tipo': [
+    ["Int"],
+    ["Float"]
+],
 
-'ListaIdent': [["Identificador"],
-               ["Identificador", ",", "ListaIdent"]],
+'ListaIdent': [
+    ["Identificador"],
+    ["Identificador", ",", "ListaIdent"]
+],
 
-'Sentencia': [["Declaracion"],
-              ["SentFor"],
-              ["SentWhile"],
-              ["Expr"],
-              ["SentIf"],
-              ["SentenciaCompuesta"],
-              [";"]],
+'Sentencia': [
+    ["Declaracion"],
+    ["SentFor"],
+    ["SentWhile"],
+    ["Expr"],
+    ["SentIf"],
+    ["SentenciaCompuesta"],
+    [";"]
+],
 
-'SentFor': [["For", "(", "Expr", ",", "Expr", ",", "Expr", ")", "Sentencia"],
-            ["For", "(", "Expr", ",", ",", "Expr", ")", "Sentencia"],
-            ["For", "(", "Expr", ",", "Expr", ",", ")", "Sentencia"],
-            ["For", "(", "Expr", ",", ",", ")", "Sentencia"]],
+'SentFor': [
+    ["For", "(", "Expr", ",", "Expr", ",", "Expr", ")", "Sentencia"],
+    ["For", "(", "Expr", ",", ",", "Expr", ")", "Sentencia"],
+    ["For", "(", "Expr", ",", "Expr", ",", ")", "Sentencia"],
+    ["For", "(", "Expr", ",", ",", ")", "Sentencia"]
+],
 
-'SentWhile': [["While", "(", "Expr", ")", "Sentencia"]],
+'SentWhile': [
+    ["While", "(", "Expr", ")", "Sentencia"]
+],
 
-'SentIf': [["If", "(", "Expr", ")", "Sentencia", "Else", "(", "Sentencia", ")"],
-           ["If", "(", "Expr", ")", "Sentencia"]],
+'SentIf': [
+    ["If", "(", "Expr", ")", "Sentencia", "Else", "(", "Sentencia", ")"],
+    ["If", "(", "Expr", ")", "Sentencia"]
+],
 
-'SentenciaCompuesta': [["{", "ListaSentencia", "}"]],
+'SentenciaCompuesta': [
+    ["{", "ListaSentencia", "}"]
+],
 
-'ListaSentencia': [["Sentencia"],
-                   ["Sentencia", "ListaSentencia"]],
+'ListaSentencia': [
+    ["Sentencia"],
+    ["Sentencia", "ListaSentencia"]
+],
 
-'Expr': [["ValorR"],
-         ["Identificador", ":=", "Expr"]],
+'Expr': [
+    ["ValorR"],
+    ["Identificador", ":=", "Expr"]
+],
 
-'ValorR': [["Mag"],
-           ["Mag", "X"]],
+'ValorR': [
+    ["Mag"],
+    ["Mag", "X"]
+],
 
-'X': [["Comparacion", "Mag"],
-      ["Comparacion", "Mag", "X"]],
+'X': [
+    ["Comparacion", "Mag"],
+    ["Comparacion", "Mag", "X"]
+],
 
-'Comparacion': [["=="],
-                [">"],
-                ["<"],
-                [">="],
-                ["<="],
-                ["!="]],
+'Comparacion': [
+    ["=="],
+    [">"],
+    ["<"],
+    [">="],
+    ["<="],
+    ["!="]
+],
 
-'Mag': [["Termino"],
-        ["Termino", "Mag2"]],
+'Mag': [
+    ["Termino"],
+    ["Termino", "Mag2"]
+],
 
-'Mag2': [["-", "Termino"],
-         ["+", "Termino"],
-         ["-", "Termino", "Mag2"],
-         ["+", "Termino", "Mag2"]],
+'Mag2': [
+    ["-", "Termino"],
+    ["+", "Termino"],
+    ["-", "Termino", "Mag2"],
+    ["+", "Termino", "Mag2"]
+],
 
-'Termino': [["Factor"],
-            ["Factor" "Termino2"]],
+'Termino': [
+    ["Factor"],
+    ["Factor" "Termino2"]
+],
 
-'Termino2': [["/", "Factor"],
-             ["*", "Factor"],
-             ["/", "Factor", "Termino2"],
-             ["*", "Factor", "Termino2"]],
+'Termino2': [
+    ["/", "Factor"],
+    ["*", "Factor"],
+    ["/", "Factor", "Termino2"],
+    ["*", "Factor", "Termino2"]
+],
 
-'Factor': [["(", "Expr", ")"],
-           ["+", "Factor"],
-           ["-", "Factor"],
-           ["Numero"],
-           ["Identificador"]]
+'Factor': [
+    ["(", "Expr", ")"],
+    ["+", "Factor"],
+    ["-", "Factor"],
+    ["Numero"],
+    ["Identificador"]
+]
 }
 
 estado = {
@@ -146,6 +187,7 @@ estado = {
 def obtenertokens(src):
     lista = []
     cadena = lexer(src)
+
     for token in cadena:
         lista.append(token[0])
     lista.append('#') #Simbolo de fin de candena
@@ -156,15 +198,16 @@ def parser(src):
     estado['puntero'] = 0
     estado['error'] = False
     estado['tokens'] = obtenertokens(src)
+    cadena = estado['tokens']
 
     pn('Funcion')
 
-    if estado['error'] == False and estado['tokens'][estado['puntero']] == '#':
-        print('La candena: ', estado['tokens'], 'PERTENECE al lenguaje')
+    if estado['error'] == False and cadena[estado['puntero']] == '#':
+        print('La candena: ', cadena , 'PERTENECE al lenguaje')
         print(estado['producciones'])
         return True
     else:
-        print('La candena: ',estado['tokens'], 'NO PERTENECE al lenguaje')
+        print('La candena: ', cadena , 'NO PERTENECE al lenguaje')
         print(estado['producciones'])
         return False
 
@@ -179,26 +222,29 @@ def pn(noTerminal):
         if estado['error'] == True:
              estado['puntero'] = puntero_original
         else:
+            estado['producciones'].append(noTerminal)
             estado['producciones'].append(parteDerecha)
             break
 
 
 def procesar(parteDerecha):
-    puntero_original = estado['puntero']
     estado['error'] = False
+    cadena = estado['tokens']
 
     for simbolo in parteDerecha:
             if simbolo in VT:
-                if simbolo == estado['tokens'][estado['puntero']]:
+                if simbolo == cadena[estado['puntero']]:
                     estado['puntero'] = estado['puntero'] + 1
                 else:
                     estado['error'] = True
-                    estado['puntero'] = puntero_original
                     break
             if simbolo in VN:
                 pn(simbolo)
                 if estado['error'] == True:
                     break
+
+
+
 
 
 
